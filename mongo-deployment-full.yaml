@@ -17,6 +17,11 @@ spec:
         app.kubernetes.io/name: mongo
         app.kubernetes.io/component: backend
     spec:
+# Uncomment the following to use persistent volume in hostpath        
+#      volumes:
+#      - name: mongo-pv-hostpath
+#        hostPath:
+#          path: /tmp/mongodb
       containers:
       - name: mongo
         image: mongo:4.2
@@ -29,10 +34,19 @@ spec:
             memory: 100Mi
         ports:
         - containerPort: 27017
-        volumeMounts:
-        - mountPath: /data
-          name: mongo-data
-      volumes:
-        - name: mongo-data
-          persistentVolumeClaim:
-            claimName: mongo-data
+# Uncomment the following to use persistent volume in EBS        
+#        volumeMounts:
+#        - mountPath: /data/db
+#          name: mongo-pvc
+#      volumes:
+#        - name: mongo-pvc
+#          persistentVolumeClaim:
+#            claimName: mongo-pvc
+
+# Uncomment the following to use persistent volume in hostpath        
+#        volumeMounts:
+#        - name: mongo-pv-hostpath
+#          mountPath: /data/db
+#        ports:
+#        - containerPort: 27017
+          

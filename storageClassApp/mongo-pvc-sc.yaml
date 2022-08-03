@@ -4,8 +4,6 @@ metadata:
   name: mongo-pvc
   namespace: lab3
 spec:
-  accessModes:
-    - ReadWriteOnce
   resources:
     requests:
       storage: 4Gi
